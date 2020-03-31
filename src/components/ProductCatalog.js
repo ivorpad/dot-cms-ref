@@ -21,7 +21,7 @@ function ProductCatalog() {
   const { id } = useParams();
   const [products, setProducts] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState("");
 
   const categoryFiltered = useMemo(
     () => categories.filter(category => category.identifier === id)
@@ -44,11 +44,14 @@ function ProductCatalog() {
     };
     fetchProducts();
 
-    setCategory(categoryFiltered);
+    categoryFiltered.map(category => {
+      setCategory(category.title)
+    })
   }, [id, categoryFiltered]);
 
   return (
     <Products>
+      {<h1>{category}</h1>}
       {isLoading && <h1>Loading...</h1>}
 
       {!isLoading &&
@@ -67,7 +70,7 @@ function ProductCatalog() {
         ))}
 
       {!isLoading && products && products.length === 0 && (
-        <h1 style={{ fontSize: "84px" }}>No products in this category</h1>
+        <h1 style={{ fontSize: "24px" }}>No products in this category</h1>
       )}
     </Products>
   );
