@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext, memo, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components';
 import { CategoriesContext } from './Primary';
@@ -16,13 +16,16 @@ const Product = styled.div`
 
 function ProductCatalog() {
 
-  // const categories = useContext(CategoriesContext);
+  const categories = useContext(CategoriesContext);
 
   const { id } = useParams();
   const [products, setProducts] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [category, setCategory] = useState(null);
 
-  // console.log(categories.filter(category => category.identifier === id));
+  const categoryFiltered = useMemo(
+    () => categories.filter(category => category.identifier === id)
+  , [categories, id]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -40,7 +43,9 @@ function ProductCatalog() {
       }
     };
     fetchProducts();
-  }, [id]);
+
+    setCategory(categoryFiltered);
+  }, [id, categoryFiltered]);
 
   return (
     <Products>
@@ -68,4 +73,6 @@ function ProductCatalog() {
   );
 }
 
-export default ProductCatalog
+
+
+export default ProductCatalog;
