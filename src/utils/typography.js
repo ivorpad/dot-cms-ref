@@ -1,0 +1,1 @@
+export const px2vh = (size, width = 1440) => `${(size / width) * 100}vw`;
