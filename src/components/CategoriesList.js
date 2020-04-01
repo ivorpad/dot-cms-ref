@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from "react-router-dom";
-import {CategoriesContext} from './Primary'
+import { useCategories } from "../shared/contexts/categories.context";
 
 function CategoriesList() {
 
-  const categories = useContext(CategoriesContext);
+  const categories = useCategories();
 
   return (
     <ul>

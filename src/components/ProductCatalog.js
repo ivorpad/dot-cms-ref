@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext, memo, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components';
-import { CategoriesContext } from './Primary';
+import { useCategories } from '../shared/contexts/categories.context';
 
 const Products = styled.div`
   display: grid;
@@ -16,7 +16,7 @@ const Product = styled.div`
 
 function ProductCatalog() {
 
-  const categories = useContext(CategoriesContext);
+  const categories = useCategories();
 
   const { id } = useParams();
   const [products, setProducts] = useState(null);
