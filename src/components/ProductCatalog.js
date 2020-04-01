@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, memo, useMemo } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components';
 import { useCategories } from '../shared/contexts/categories.context';
@@ -43,10 +43,7 @@ function ProductCatalog() {
       }
     };
     fetchProducts();
-
-    categoryFiltered.map(category => {
-      setCategory(category.title)
-    })
+    categoryFiltered.map(category => setCategory(category.title));
   }, [id, categoryFiltered]);
 
   return (
