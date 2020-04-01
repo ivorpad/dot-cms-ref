@@ -1,24 +1,37 @@
-import React from 'react'
-import { Link } from "react-router-dom";
-import { useCategories } from "../shared/contexts/categories.context";
+import React, { useEffect } from 'react'
+import styled from 'styled-components'
+import CategoriesFilter from './CategoriesFilter';
+import {
+  useCategoriesDispatch,
+  useCategories
+} from "../shared/contexts/categories.context";
+
+const CategoriesNav = styled.nav`
+  background: grey;
+  width: 30%;
+`
 
 function CategoriesList() {
 
   const categories = useCategories();
+  const setCategories = useCategoriesDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetch(
+        `https://${process.env.REACT_APP_DOTCMS_API_URL}/content/render/false/query/-contentType:forms%20+contentType:ProductLineLandingPage%20+(conhost:${process.env.REACT_APP_DOTCMS_CONNHOST}%20conhost:SYSTEM_HOST)%20+languageId:1%20+deleted:false%20+working:true/orderby/modDate%20desc/limit/10`
+      ).then(r => r.json());
+      setCategories(data.contentlets);
+    };
+
+    fetchData();
+  }, [setCategories]);
 
   return (
-    <ul>
-      {categories.map((category, index) => {
-        return (
-          <li key={index}>
-            <Link to={`/category/${category.identifier}`}>
-              {category.title}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+    <CategoriesNav>
+      {categories.length > 0 ? <CategoriesFilter /> : <p>loading...</p>}
+    </CategoriesNav>
   );
-};
+}
 
-export default CategoriesList
+export default CategoriesList;
