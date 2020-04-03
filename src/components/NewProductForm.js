@@ -52,7 +52,7 @@ function NewProductForm() {
         myHeaders.append("Content-Type", "multipart/form-data");
         myHeaders.append(
           "Authorization",
-          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcGkzNWUzNThiZC00NDAwLTQ0YzUtOTNjZS0zYTdiNjExM2EwOWQiLCJ4bW9kIjoxNTg1OTMwNDAxMDAwLCJuYmYiOjE1ODU5MzA0MDEsImlzcyI6ImZjZGQ5YTBkLTQxNmYtNGJlOC1hMWViLTM5MzEwMzM1YjgxYSIsImxhYmVsIjoicmVhY3QgYXBwIiwiZXhwIjoxNjgwNDcyODAwLCJpYXQiOjE1ODU5MzA0MDEsImp0aSI6IjcwNzI5OGU4LTdmNDEtNGZlYy04N2E4LWI2NDNlODhmNGY1OSJ9.Wj01r7uHJvO_6ZyuRvDpp4tkEFpEHpfvQgIfRALp5gc"
+          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcGk0ZTdkZTYwZC1jMjNkLTQ4OGEtYjY2MS05ZTcyOTI0ZGI5MjEiLCJ4bW9kIjoxNTg1OTM3NDM2MDAwLCJuYmYiOjE1ODU5Mzc0MzYsImlzcyI6ImZjZGQ5YTBkLTQxNmYtNGJlOC1hMWViLTM5MzEwMzM1YjgxYSIsImxhYmVsIjoicmVhY3RBcHAyIiwiZXhwIjoxNjgwNDcyODAxLCJpYXQiOjE1ODU5Mzc0MzYsImp0aSI6IjUwY2ViN2I2LTUyMWQtNGY0Ni1hMGViLTk4YzZiMTVlNmVkOSJ9.54w-IVfhvIo3ZUwsE_7UGWwH8hYjwnGcZmTPE4YTADk"
         );
         myHeaders.append(
           "Cookie",
