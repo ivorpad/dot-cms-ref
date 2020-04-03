@@ -60,7 +60,7 @@ function NewProductForm() {
         formdata.append("urlTitle", "test-title");
         formdata.append("productLine", "b2b541ec-611a-480d-90d8-c2af1c692816");
         formdata.append("retailPrice", "999");
-        formdata.append("productNumber", productNumber());
+        formdata.append("productNumber", productNumber);
         formdata.append("image", imageRef.current.files[0]);
 
         var requestOptions = {
