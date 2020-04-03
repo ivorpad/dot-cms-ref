@@ -7,10 +7,9 @@ import NewProductForm from './NewProductForm'
 function ProductCatalog() {
 
   const location = useLocation();
-  const history = useHistory();
   const background = location.state && location.state.background;
   const product = location.state  && location.state.product;
-  console.log({ location, history });
+
   return (
     <>
       <Switch location={background || location}>
@@ -18,7 +17,6 @@ function ProductCatalog() {
           <p>Please select a category</p>
         </Route>
         <Route path="/category/:id" children={<ProductCatalogList />} />
-
         <Route path="/product/:id" children={<Product />} />
       </Switch>
 
@@ -31,7 +29,9 @@ function ProductCatalog() {
             />
             <Route
               path="/product/:id"
-              children={<Modal component={<Product />} />}
+              children={
+                <Modal component={<Product />} />
+              }
             />
           </Switch>
         </>
