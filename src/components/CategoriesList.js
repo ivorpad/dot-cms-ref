@@ -17,14 +17,14 @@ function CategoriesList() {
   const setCategories = useCategoriesDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCategories = async () => {
       const data = await fetch(
         `https://${process.env.REACT_APP_DOTCMS_API_URL}/content/render/false/query/-contentType:forms%20+contentType:ProductLineLandingPage%20+(conhost:${process.env.REACT_APP_DOTCMS_CONNHOST}%20conhost:SYSTEM_HOST)%20+languageId:1%20+deleted:false%20+working:true/orderby/modDate%20desc/limit/10`
       ).then(r => r.json());
       setCategories(data.contentlets);
     };
 
-    fetchData();
+    fetchCategories();
   }, [setCategories]);
 
   return (

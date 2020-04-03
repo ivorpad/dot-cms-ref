@@ -44,7 +44,7 @@ function ProductCatalog() {
       }
     };
     fetchProducts();
-    categoryFiltered.map(category => setCategory(category.title));
+    categoryFiltered.map(category => setCategory({ title: category.title, identifier: category.identifier}));
   }, [id, categoryFiltered, setProducts]);
 
   const ProductLink = ({to, children}) => {
@@ -55,7 +55,7 @@ function ProductCatalog() {
 
   return (
     <Products>
-      {<h1>{category}</h1>}
+      {<h1>{category.title}</h1>}
       <Link
         to={{
           pathname: `/product/new`,
