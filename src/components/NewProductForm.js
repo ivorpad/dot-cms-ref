@@ -39,6 +39,10 @@ function NewProductForm() {
       onSubmit={async e => {
         e.preventDefault();
 
+        const productNumber = Math.random()
+          .toString(16)
+          .slice(-8);
+
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "multipart/form-data");
         myHeaders.append(
@@ -56,12 +60,8 @@ function NewProductForm() {
         formdata.append("urlTitle", "test-title");
         formdata.append("productLine", "b2b541ec-611a-480d-90d8-c2af1c692816");
         formdata.append("retailPrice", "999");
-        formdata.append("productNumber", "34l5jkn34kj64568");
-        formdata.append(
-          "image",
-          imageRef.current.files[0],
-          "yow-surfskate-backpack-coral.jpg"
-        );
+        formdata.append("productNumber", productNumber());
+        formdata.append("image", imageRef.current.files[0]);
 
         var requestOptions = {
           method: "POST",
