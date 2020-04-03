@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-
+import Img from "react-image";
 function Product() {
   const { id } = useParams();
   const location = useLocation();
@@ -27,11 +27,12 @@ function Product() {
         <>
           <h1>{product.title}</h1>
           <h3>Category: {product.productLine[0].title}</h3>
-          <img
+          <Img
             src={`https://${process.env.REACT_APP_DOTCMS_URL}/${product.image}/w400/q20`}
             width={400}
             alt={product.title}
             loading="lazy"
+            loader={<p>loading...</p>}
           />
         </>
       ) : (
