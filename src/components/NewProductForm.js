@@ -39,15 +39,6 @@ function NewProductForm() {
       onSubmit={async e => {
         e.preventDefault();
 
-        const productNumber = Math.random()
-          .toString(16)
-          .slice(-8);
-
-        const data = {
-          ...formValues,
-          productNumber
-        };
-
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "multipart/form-data");
         myHeaders.append(
@@ -59,33 +50,31 @@ function NewProductForm() {
           "JSESSIONID=051933BF9F415AE23471D2F9B74EEF81; BACKENDID=172.24.0.3"
         );
 
-        const formData = new FormData();
+        var formdata = new FormData();
+        formdata.append("title", "some title");
+        formdata.append("contentType", "Product");
+        formdata.append("urlTitle", "test-title");
+        formdata.append("productLine", "b2b541ec-611a-480d-90d8-c2af1c692816");
+        formdata.append("retailPrice", "999");
+        formdata.append("productNumber", "34l5jkn34kj64568");
+        formdata.append(
+          "image",
+          imageRef.current.files[0],
+          "yow-surfskate-backpack-coral.jpg"
+        );
 
-        for (const name in formValues) {
-          formData.append(name, formValues[name]);
-        }
-
-        formData.append("image", imageRef.current.files[0], "file-name");
-
-        for (var pair of formData.entries()) {
-          console.log(pair[0] + ", " + pair[1]);
-        }
-
-        const options = {
+        var requestOptions = {
           method: "POST",
           headers: myHeaders,
-          body: formData,
+          body: formdata,
           redirect: "follow"
         };
 
-        const submit = await fetch(
-          `https://demo.dotcms.com/api/content/publish/1`,
-          options
-        )
-        .then(result => console.log(result))
-        .catch(error => console.log("error", error));
+        fetch("https://demo.dotcms.com/api/content/publish/1", requestOptions)
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.log("error", error));
 
-        console.log({ data, submit, options });
       }}>
       <FormControl>
         <input
