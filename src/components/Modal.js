@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useHistory, useLocation } from "react-router-dom";
 import styled, { createGlobalStyle } from 'styled-components'
 import { useSpring, animated } from "react-spring";
-
+import close from '../close.svg';
 const ModalOverlay = styled.div`
   background: rgba(0, 0, 0, 0.1);
   z-index: 0;
@@ -14,6 +14,15 @@ const ModalOverlay = styled.div`
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+`;
+
+const CloseModal = styled.a`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+    &:hover > img {
+      opacity: .5;
+    }
 `;
 
 const ModalContainer = styled.div`
@@ -69,14 +78,11 @@ function Modal({ component }) {
   return (
     <animated.div style={animProps}>
       <GlobalStyle hidden={isModalOpen} />
-      <ModalOverlay
-        onClick={back}
-        className="modal-overlay"
-      />
+      <ModalOverlay onClick={back} className="modal-overlay" />
       <ModalContainer>
-        <a href="#back" onClick={back}>
-          close
-        </a>
+        <CloseModal href="#back" onClick={back}>
+          <img src={close} alt="Close Modal" width="16" />
+        </CloseModal>
         {component}
       </ModalContainer>
     </animated.div>

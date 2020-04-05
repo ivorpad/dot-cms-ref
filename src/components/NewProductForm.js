@@ -1,12 +1,45 @@
 import React, { useRef } from 'react'
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import styled from 'styled-components'
 import {
   useCategories
 } from "../shared/contexts/categories.context";
+import {PrimaryButton} from '../styles/shared'
 //import PropTypes from "prop-types";
 
-const FormControl = styled.div``
+const FormControl = styled.div`
+  margin-bottom: 1rem;
+`
+
+const Input = styled.input`
+  width: 100%;
+  padding: 0.7rem 0.5rem;
+  border-radius: 3px;
+  font-size: 14px;
+  color: ${props => props.theme.main.gray};
+  border: none;
+  background: ${props => props.theme.main.mediumGray};
+    &:focus {
+      background: white;
+      box-shadow: 0px 0px 1px 0px rgba(0,0,0,1);
+      outline: none;
+    }
+`;
+
+const Select = styled.select`
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  height: 37px;
+  font-size: 14px;
+  background: ${props => props.theme.main.mediumGray};
+  &:focus {
+    background: white;
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 1);
+    outline: none;
+  }
+  color: ${props => props.theme.main.gray};
+`;
 
 function NewProductForm() {
   const location = useLocation();
@@ -47,10 +80,7 @@ function NewProductForm() {
 
         const H = new Headers();
         H.append("Content-Type", "multipart/form-data");
-        H.append(
-          "Authorization",
-          "Bearer bearer_token"
-        );
+        H.append("Authorization", "Bearer bearer_token");
 
         H.append(
           "Cookie",
@@ -62,7 +92,7 @@ function NewProductForm() {
         for (const name in formValues) {
           formData.append(name, formValues[name]);
         }
-        console.log(imageRef.current.files[0]);
+
         formData.append("image", imageRef.current.files[0]);
 
         for (var pair of formData.entries()) {
@@ -80,14 +110,14 @@ function NewProductForm() {
           `https://demo.dotcms.com/api/content/publish/1`,
           options
         )
-        .then(result => result.text())
-        .then(result => console.log({result}))
-        .catch(error => console.log("error", error));
+          .then(result => result.text())
+          .then(result => console.log({ result }))
+          .catch(error => console.log("error", error));
 
         console.log({ data, results, options });
       }}>
       <FormControl>
-        <input
+        <Input
           onChange={handleForm}
           type="text"
           name="title"
@@ -97,7 +127,7 @@ function NewProductForm() {
         />
       </FormControl>
       <FormControl>
-        <select
+        <Select
           name="productLine"
           id="category"
           onChange={handleForm}
@@ -107,11 +137,11 @@ function NewProductForm() {
               {category.title}
             </option>
           ))}
-        </select>
+        </Select>
       </FormControl>
 
       <FormControl>
-        <input
+        <Input
           onChange={handleForm}
           type="number"
           name="retailPrice"
@@ -128,11 +158,12 @@ function NewProductForm() {
           id="image"
           ref={imageRef}
           accept="image/x-png,image/jpeg"
+          style={{marginBottom: '1.5rem'}}
         />
       </FormControl>
 
       <FormControl>
-        <input type="submit" name="submit" id="submit" />
+        <PrimaryButton>Submit</PrimaryButton>
       </FormControl>
     </form>
   );

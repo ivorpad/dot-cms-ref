@@ -7,8 +7,6 @@ import {
   useCategories
 } from "../shared/contexts/categories.context";
 
-console.log(loading);
-
 const CategoriesNav = styled.nav`
   display: ${props => props.isLoading ? 'flex' : 'block'};
   justify-content: center;

@@ -5,7 +5,7 @@ import { useCategories } from '../shared/contexts/categories.context';
 import { useProductsDispatch, useProducts } from "../shared/contexts/products.context";
 import { px2vh as px, truncate } from "../utils/typography";
 import { media } from "../utils/media";
-
+import {PrimaryButton} from '../styles/shared'
 const ProductsCatalogListContainer = styled.div`
   width: 72.4%;
   margin-left: auto;
@@ -32,28 +32,6 @@ const ProductCatalogHeader = styled.header`
  border-bottom: 1px solid #ddd;
  padding-bottom: 1rem;
 `
-
-const AddNewProductButton = styled(
-  styled(Link)`
-    border: 1px solid #319795;
-    padding: 0.7rem;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    border-radius: 3px;
-    color: #e6fffa;
-    text-decoration: none;
-    font-size: 14px;
-    background: #319795;
-    font-weight: 500;
-    &:hover {
-      border: 1px solid #285E61;
-      background: #2c7a7b;
-    }
-    &:active {
-      transform: translateY(1px);
-      box-shadow: none;
-    }
-  `
-)``;
 
 const ProductLinkStyled = styled(
   styled(Link)`
@@ -146,13 +124,13 @@ function ProductCatalog() {
     <ProductsCatalogListContainer className="products-catalog-list">
       <ProductCatalogHeader>
         {<CategoryTitle>{category.title}</CategoryTitle>}
-        <AddNewProductButton
+        <PrimaryButton
           to={{
             pathname: `/product/new`,
             state: { background: location, category }
           }}>
           Add New Product
-        </AddNewProductButton>
+        </PrimaryButton>
       </ProductCatalogHeader>
       {isLoading && <h1>Loading...</h1>}
       <ProductsGrid className="product-grid">

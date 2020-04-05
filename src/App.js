@@ -26,6 +26,7 @@ const GlobalStyle = createGlobalStyle`
 const theme = {
   main: {
     gray: "#737373",
+    mediumGray: "#ECEEF3",
     lightGray: "#f6f6f6"
   }
 };
