@@ -4,17 +4,30 @@ import ProductCatalogList from './ProductCatalogList'
 import Product from './Product'
 import Modal from './Modal'
 import NewProductForm from './NewProductForm'
-function ProductCatalog() {
+import { px2vh as px } from "../utils/typography";
+import styled from "styled-components";
 
+const SelectCategoryTitle = styled.div`
+  display: flex;
+  margin-left: ${px(210)};
+  p {
+    font-size: ${px(18)};
+    font-weight: 300;
+  }
+`
+
+function ProductCatalog() {
   const location = useLocation();
   const background = location.state && location.state.background;
-  const product = location.state  && location.state.product;
+  //const product = location.state  && location.state.product;
 
   return (
     <>
       <Switch location={background || location}>
         <Route exact path="/">
-          <p>Please select a category</p>
+          <SelectCategoryTitle>
+            <p>Please select a category</p>
+          </SelectCategoryTitle>
         </Route>
         <Route path="/category/:id" children={<ProductCatalogList />} />
         <Route path="/product/:id" children={<Product />} />
@@ -29,9 +42,7 @@ function ProductCatalog() {
             />
             <Route
               path="/product/:id"
-              children={
-                <Modal component={<Product />} />
-              }
+              children={<Modal component={<Product />} />}
             />
           </Switch>
         </>

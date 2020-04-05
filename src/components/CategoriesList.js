@@ -1,15 +1,24 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import CategoriesFilter from './CategoriesFilter';
+import loading from '../loading.svg'
 import {
   useCategoriesDispatch,
   useCategories
 } from "../shared/contexts/categories.context";
 
+console.log(loading);
+
 const CategoriesNav = styled.nav`
-  background: grey;
-  width: 30%;
-`
+  display: ${props => props.isLoading ? 'flex' : 'block'};
+  justify-content: center;
+  align-items: center;
+  background: white;
+  height: 500px;
+  position: fixed;
+  width: 13%;
+
+`;
 
 function CategoriesList() {
 
@@ -28,8 +37,14 @@ function CategoriesList() {
   }, [setCategories]);
 
   return (
-    <CategoriesNav>
-      {categories.length > 0 ? <CategoriesFilter /> : <p>loading...</p>}
+    <CategoriesNav
+      isLoading={categories.length === 0}
+      className="categories-list">
+      {categories.length > 0 ? (
+        <CategoriesFilter />
+      ) : (
+        <img src={loading} width="32" className="loading" alt="Loading Gif" />
+      )}
     </CategoriesNav>
   );
 }

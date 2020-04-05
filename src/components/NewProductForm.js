@@ -1,4 +1,4 @@
-import React, { createRef } from 'react'
+import React, { useRef } from 'react'
 import { useLocation } from "react-router-dom";
 import styled from 'styled-components'
 import slugify from 'react-slugify'
@@ -12,7 +12,7 @@ const FormControl = styled.div``
 function NewProductForm() {
   const location = useLocation();
   const categories = useCategories();
-  const imageRef = createRef()
+  const imageRef = useRef(null)
 
   const initialState = {
     title: "Some title",
@@ -43,38 +43,51 @@ function NewProductForm() {
           .toString(16)
           .slice(-8);
 
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "multipart/form-data");
-        myHeaders.append(
+        const data = {
+          ...formValues,
+          productNumber
+        };
+
+        const H = new Headers();
+        H.append("Content-Type", "multipart/form-data");
+        H.append(
           "Authorization",
-          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcGk0ZTdkZTYwZC1jMjNkLTQ4OGEtYjY2MS05ZTcyOTI0ZGI5MjEiLCJ4bW9kIjoxNTg1OTM3NDM2MDAwLCJuYmYiOjE1ODU5Mzc0MzYsImlzcyI6ImZjZGQ5YTBkLTQxNmYtNGJlOC1hMWViLTM5MzEwMzM1YjgxYSIsImxhYmVsIjoicmVhY3RBcHAyIiwiZXhwIjoxNjgwNDcyODAxLCJpYXQiOjE1ODU5Mzc0MzYsImp0aSI6IjUwY2ViN2I2LTUyMWQtNGY0Ni1hMGViLTk4YzZiMTVlNmVkOSJ9.54w-IVfhvIo3ZUwsE_7UGWwH8hYjwnGcZmTPE4YTADk"
+          "Bearer bearer_token"
         );
-        myHeaders.append(
+
+        H.append(
           "Cookie",
-          "JSESSIONID=051933BF9F415AE23471D2F9B74EEF81; BACKENDID=172.24.0.3"
+          "BACKENDID=172.24.0.3; JSESSIONID=5CB1D4B0D161CA1FC34EEE68681374E0"
         );
 
-        var formdata = new FormData();
-        formdata.append("title", "some title");
-        formdata.append("contentType", "Product");
-        formdata.append("urlTitle", "test-title");
-        formdata.append("productLine", "b2b541ec-611a-480d-90d8-c2af1c692816");
-        formdata.append("retailPrice", "999");
-        formdata.append("productNumber", productNumber);
-        formdata.append("image", imageRef.current.files[0]);
+        const formData = new FormData();
 
-        var requestOptions = {
+        for (const name in formValues) {
+          formData.append(name, formValues[name]);
+        }
+        console.log(imageRef.current.files[0]);
+        formData.append("image", imageRef.current.files[0]);
+
+        for (var pair of formData.entries()) {
+          console.log(pair[0] + ", " + pair[1]);
+        }
+
+        const options = {
           method: "POST",
-          headers: myHeaders,
-          body: formdata,
+          headers: H,
+          body: formData,
           redirect: "follow"
         };
 
-        fetch("https://demo.dotcms.com/api/content/publish/1", requestOptions)
-          .then(response => response.text())
-          .then(result => console.log(result))
-          .catch(error => console.log("error", error));
+        const results = await fetch(
+          `https://demo.dotcms.com/api/content/publish/1`,
+          options
+        )
+        .then(result => result.text())
+        .then(result => console.log({result}))
+        .catch(error => console.log("error", error));
 
+        console.log({ data, results, options });
       }}>
       <FormControl>
         <input
