@@ -1,5 +1,5 @@
-import React from 'react'
-import { NavLink } from "react-router-dom";
+import React from "react";
+import { NavLink, useHistory } from "react-router-dom";
 import { useCategories } from "../shared/contexts/categories.context";
 import styled from "styled-components";
 
@@ -22,20 +22,64 @@ const LinkItem = styled(
   "active"
 )``;
 
+const SelectCategories = styled.select`
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, .1);
+  margin-bottom: 2rem;
+  height: 37px;
+  font-size: 14px;
+  background: ${props => props.theme.main.mediumGray};
+  &:focus {
+    background: white;
+    outline: none;
+  }
+  color: ${props => props.theme.main.gray};
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+
+
 function CategoriesFilter() {
   const categories = useCategories();
+  const history = useHistory(
+
+  )
+  const handleCategoryOption = (e) => {
+    e.target.value === "default"
+      ? history.push(`/`)
+      : history.push(`/category/${e.target.value}`);
+  };
+
   return (
-    <ul>
-      {categories.map((category, index) => {
-        return (
-          <li key={index}>
-            <LinkItem activeClassName="active" to={`/category/${category.identifier}`}>
-              {category.title}
-            </LinkItem>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <ul className="categories-menu">
+        {categories.map((category, index) => {
+          return (
+            <li key={index}>
+              <LinkItem
+                activeClassName="active"
+                to={`/category/${category.identifier}`}>
+                {category.title}
+              </LinkItem>
+            </li>
+          );
+        })}
+      </ul>
+
+      {categories && (
+        <SelectCategories
+          name="categories-mobile"
+          className="categories-mobile"
+          onChange={handleCategoryOption}>
+          <option value="default">Select a category</option>
+          {categories.map((category, index) => (
+            <option value={category.identifier}>{category.title}</option>
+          ))}
+        </SelectCategories>
+      )}
+    </>
   );
 };
 

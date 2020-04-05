@@ -5,15 +5,24 @@ import { useCategories } from '../shared/contexts/categories.context';
 import { useProductsDispatch, useProducts } from "../shared/contexts/products.context";
 import { px2vh as px, truncate } from "../utils/typography";
 import { media } from "../utils/media";
-import {PrimaryButton} from '../styles/shared'
+import { PrimaryButtonLink } from "../styles/shared";
 const ProductsCatalogListContainer = styled.div`
-  width: 72.4%;
+  width: 100%;
+
+  ${media.md`width: 78.4%`};
+  ${media.lg`width: 78.4%`};
+  ${media.xl`width: 72.4%`};
+
+  /* width: 72.4%; */
   margin-left: auto;
 `;
 
 const ProductsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(150px, 1fr));
+
+  ${media.md`
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+  `}
   gap: 30px;
   margin-top: 30px;
 `;
@@ -124,13 +133,13 @@ function ProductCatalog() {
     <ProductsCatalogListContainer className="products-catalog-list">
       <ProductCatalogHeader>
         {<CategoryTitle>{category.title}</CategoryTitle>}
-        <PrimaryButton
+        <PrimaryButtonLink
           to={{
             pathname: `/product/new`,
             state: { background: location, category }
           }}>
           Add New Product
-        </PrimaryButton>
+        </PrimaryButtonLink>
       </ProductCatalogHeader>
       {isLoading && <h1>Loading...</h1>}
       <ProductsGrid className="product-grid">

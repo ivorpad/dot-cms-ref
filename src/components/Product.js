@@ -3,13 +3,15 @@ import { useParams, useLocation } from "react-router-dom";
 import loading from '../loading.svg'
 import Img from "react-image";
 import styled, { css } from "styled-components";
-import { price } from "../utils/media";
+import { price, media } from "../utils/media";
 import { px2vh as px } from "../utils/typography";
 
 const isSingle = css`
   background: white;
   padding: 3rem;
-  width: 72.25%;
+  ${media.md`width: 78.25%;`};
+  ${media.lg`width: 72.25%;`};
+  width: 80.25%;
 `;
 
 const ProductContainer = styled.div`

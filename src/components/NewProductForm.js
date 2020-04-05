@@ -47,12 +47,11 @@ function NewProductForm() {
   const imageRef = useRef(null)
 
   const initialState = {
-    title: "Some title",
+    title: "",
     contentType: "Product",
     urlTitle: "some-title",
     productLine: location.state.category.identifier,
-    retailPrice: "999",
-    productNumber: "as65d4s6deasasa",
+    retailPrice: "",
   };
 
   const [formValues, setFormValues] = React.useState(initialState);
@@ -158,7 +157,6 @@ function NewProductForm() {
           id="image"
           ref={imageRef}
           accept="image/x-png,image/jpeg"
-          style={{marginBottom: '1.5rem'}}
         />
       </FormControl>
 

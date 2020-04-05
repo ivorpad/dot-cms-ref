@@ -2,20 +2,24 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import CategoriesFilter from './CategoriesFilter';
 import loading from '../loading.svg'
+import { media, } from "../utils/media";
+
 import {
   useCategoriesDispatch,
   useCategories
 } from "../shared/contexts/categories.context";
 
 const CategoriesNav = styled.nav`
-  display: ${props => props.isLoading ? 'flex' : 'block'};
+  display: ${props => (props.isLoading ? "flex" : "block")};
   justify-content: center;
   align-items: center;
-  background: white;
-  height: 500px;
-  position: fixed;
-  width: 13%;
 
+  ${media.md`
+    background: white;
+    height: 500px;
+    position: fixed;
+    width: 13%;
+  `}
 `;
 
 function CategoriesList() {

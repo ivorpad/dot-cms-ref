@@ -3,6 +3,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import styled, { createGlobalStyle } from 'styled-components'
 import { useSpring, animated } from "react-spring";
 import close from '../close.svg';
+import { media, sizes } from "../utils/media";
+
 const ModalOverlay = styled.div`
   background: rgba(0, 0, 0, 0.1);
   z-index: 0;
@@ -34,7 +36,11 @@ const ModalContainer = styled.div`
   transform: translateX(-50%);
   margin-top: 3.75rem;
   padding: 3rem;
-  width: 30%;
+  ${media.md`width: 60%;`};
+  ${media.lg`width: 50%;`};
+  ${media.xl`width: 40%;`};
+  ${media.xxl`width: 30%;`};
+  width: 80%;
   z-index: 1;
   background-color: white;
   overflow: overlay;
