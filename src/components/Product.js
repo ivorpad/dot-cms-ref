@@ -11,7 +11,7 @@ const isSingle = css`
   padding: 3rem;
   ${media.md`width: 78.25%;`};
   ${media.lg`width: 72.25%;`};
-  width: 80.25%;
+  width: 100%;
 `;
 
 const ProductContainer = styled.div`
@@ -28,7 +28,7 @@ const ProductContainer = styled.div`
   }
 
   h3 {
-    font-size: ${px(18)};
+    font-size: 18px;
     margin-bottom: 0.5rem;
     line-height: 1.5;
   }
@@ -42,7 +42,7 @@ const ProductContainer = styled.div`
   }
   .product__price {
     margin-top: 2rem;
-    font-size: ${px(18)};
+    font-size: 18px;
   }
 
   p {
@@ -106,7 +106,7 @@ function Product() {
           </div>
         </>
       ) : (
-        "loading..."
+        "Loading..."
       )}
     </ProductContainer>
   );

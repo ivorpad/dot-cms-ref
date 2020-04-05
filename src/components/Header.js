@@ -31,6 +31,7 @@ const ProductSearch = styled.div`
     border: none;
     padding: .5rem .8rem;
     border-radius: 15px;
+    font-size: 13px;
   }
 `;
 
@@ -39,7 +40,7 @@ function Header() {
     <HeaderContainer className="page-header">
       <h1>
         <Link to="/">
-          Product Catalog
+          Catalyst
         </Link>
       </h1>
 

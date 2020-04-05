@@ -6,15 +6,24 @@ import Modal from './Modal'
 import NewProductForm from './NewProductForm'
 import { px2vh as px } from "../utils/typography";
 import styled from "styled-components";
+import { media, sizes } from "../utils/media";
 
 const SelectCategoryTitle = styled.div`
   display: flex;
-  margin-left: ${px(210)};
+  ${media.md`
+    margin-left: ${px(210)};
+  `}
   p {
-    font-size: ${px(18)};
+    font-size: ${px(36)};
+    ${media.md`
+      font-size: ${px(24)};
+    `}
+    ${media.lg`
+      font-size: ${px(18)};
+    `}
     font-weight: 300;
   }
-`
+`;
 
 function ProductCatalog() {
   const location = useLocation();

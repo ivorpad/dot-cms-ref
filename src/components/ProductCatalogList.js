@@ -6,12 +6,21 @@ import { useProductsDispatch, useProducts } from "../shared/contexts/products.co
 import { px2vh as px, truncate } from "../utils/typography";
 import { media } from "../utils/media";
 import { PrimaryButtonLink } from "../styles/shared";
+import loading from '../loading.svg'
+
 const ProductsCatalogListContainer = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
 
-  ${media.md`width: 78.4%`};
-  ${media.lg`width: 78.4%`};
-  ${media.xl`width: 72.4%`};
+    .loading {
+      align-self: center;
+      margin-top: 3rem;
+    }
+
+  ${media.md`width: 78.4%;`};
+  ${media.lg`width: 78.4%;`};
+  ${media.xl`width: 72.4%;`};
 
   /* width: 72.4%; */
   margin-left: auto;
@@ -141,7 +150,7 @@ function ProductCatalog() {
           Add New Product
         </PrimaryButtonLink>
       </ProductCatalogHeader>
-      {isLoading && <h1>Loading...</h1>}
+      {isLoading && <img width="32" src={loading} className="loading" alt="Loading Gif" />}
       <ProductsGrid className="product-grid">
         {!isLoading &&
           products &&
