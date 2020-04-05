@@ -42,6 +42,7 @@ const ProductContainer = styled.div`
   }
   .product__price {
     margin-top: 2rem;
+    margin-bottom: 3rem;
     font-size: 18px;
   }
 

@@ -34,7 +34,10 @@ const ModalContainer = styled.div`
   left: 50%;
   right: 50%;
   transform: translateX(-50%);
-  margin-top: 3.75rem;
+    margin-top: 2.5rem;
+  ${media.md`
+    margin-top: 3.75rem;
+  `}
   padding: 3rem;
   ${media.md`width: 60%;`};
   ${media.lg`width: 50%;`};
@@ -45,7 +48,7 @@ const ModalContainer = styled.div`
   background-color: white;
   overflow: overlay;
   min-height: 300px;
-  max-height: 722px;
+  max-height: 800px;
   overflow-x: hidden;
   overflow-y: scroll;
   border-radius: 3px;
