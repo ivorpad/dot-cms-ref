@@ -14,7 +14,7 @@ const SelectCategoryTitle = styled.div`
     margin-left: ${px(210)};
   `}
   p {
-    font-size: ${px(36)};
+    font-size: ${px(56)};
     ${media.md`
       font-size: ${px(24)};
     `}

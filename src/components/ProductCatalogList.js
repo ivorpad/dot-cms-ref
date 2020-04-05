@@ -37,8 +37,9 @@ const ProductsGrid = styled.div`
 `;
 
 const CategoryTitle = styled.h1`
+  align-self: center;
   font-weight: 200;
-  font-size: ${px(48)};
+  font-size: ${px(66)};
   ${media.md`font-size: ${px(36)};`}
   ${media.lg`font-size: ${px(22)};`}
   ${media.xl`font-size: ${px(20)};`}
