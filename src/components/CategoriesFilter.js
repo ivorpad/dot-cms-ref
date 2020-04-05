@@ -23,7 +23,6 @@ const LinkItem = styled(
 )``;
 
 function CategoriesFilter() {
-
   const categories = useCategories();
   return (
     <ul>

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useCategories } from '../shared/contexts/categories.context';
 import { useProductsDispatch, useProducts } from "../shared/contexts/products.context";
 import { px2vh as px, truncate } from "../utils/typography";
-import { media, sizes } from "../utils/media";
+import { media } from "../utils/media";
 
 const ProductsCatalogListContainer = styled.div`
   width: 72.4%;

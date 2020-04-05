@@ -1,6 +1,63 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
+import loading from '../loading.svg'
 import Img from "react-image";
+import styled, { css } from "styled-components";
+import { price } from "../utils/media";
+import { px2vh as px } from "../utils/typography";
+
+const isSingle = css`
+  background: white;
+  padding: 3rem;
+  width: 72.25%;
+`;
+
+const ProductContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* {only when product is seen from single page} */
+  ${props => (!props.isModal ? isSingle : "")}
+  margin-left: auto;
+  img {
+    align-self: center;
+    margin-bottom: 2rem;
+    height: 30%;
+    object-fit: contain;
+  }
+
+  h3 {
+    font-size: ${px(18)};
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .product__category {
+    color: ${props => props.theme.main.gray};
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  .product__price {
+    margin-top: 2rem;
+    font-size: ${px(18)};
+  }
+
+  p {
+    line-height: 1.5;
+    color: #444;
+  }
+
+  ul {
+    margin-top: 1rem;
+    list-style: disc;
+    margin-left: 1rem;
+    li {
+      margin-bottom: 1rem;
+    }
+  }
+`;
+
 function Product() {
   const { id } = useParams();
   const location = useLocation();
@@ -22,23 +79,34 @@ function Product() {
   }, [location.state, id]);
   
   return (
-    <div>
+    <ProductContainer isModal={!!location.state?.background}>
       {product ? (
         <>
-          <h1>{product.title}</h1>
-          <h3>Category: {product.productLine[0].title}</h3>
           <Img
             src={`https://${process.env.REACT_APP_DOTCMS_URL}/${product.image}/w400/q20`}
             width={400}
             alt={product.title}
             loading="lazy"
-            loader={<p>loading...</p>}
+            loader={
+              <img src={loading} width="32" className="App-logo" alt="logo" />
+            }
           />
+          <h3>{product.title}</h3>
+          <span className="product__category">
+            {product.productLine[0].title}
+          </span>
+          <div
+            className="product__description"
+            dangerouslySetInnerHTML={{ __html: product.description }}
+          />
+          <div className="product__price">
+            <span>{price.format(product.retailPrice.replace(/,/g, ""))}</span>
+          </div>
         </>
       ) : (
         "loading..."
       )}
-    </div>
+    </ProductContainer>
   );
 }
 

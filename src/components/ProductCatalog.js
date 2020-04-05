@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, useLocation, useHistory } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import ProductCatalogList from './ProductCatalogList'
 import Product from './Product'
 import Modal from './Modal'

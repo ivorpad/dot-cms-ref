@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import { useLocation } from "react-router-dom";
 import styled from 'styled-components'
-import slugify from 'react-slugify'
 import {
   useCategories
 } from "../shared/contexts/categories.context";
@@ -31,8 +30,6 @@ function NewProductForm() {
       [e.target.name]: e.target.value
     });
   };
-
-  console.log(formValues);
   
   return (
     <form

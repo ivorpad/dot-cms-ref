@@ -17,22 +17,22 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContainer = styled.div`
-  /* background: white;
+  top: 0;
+  background: white;
   position: absolute;
   left: 50%;
   right: 50%;
-  transform: translateX(-50%); */
-  display: flex;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
+  transform: translateX(-50%);
   margin-top: 3.75rem;
-  margin-bottom: 3.75rem;
-  flex-direction: column;
+  padding: 3rem;
   width: 30%;
   z-index: 1;
   background-color: white;
-  min-height: 45%;
+  overflow: overlay;
+  min-height: 300px;
+  max-height: 722px;
+  overflow: scroll;
+  border-radius: 3px;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -57,6 +57,7 @@ function Modal({ component }) {
     if (location.state.background) {
       setIsModalOpen(() => !isModalOpen);
     } 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.state.background]);
 
   let back = e => {
@@ -68,14 +69,16 @@ function Modal({ component }) {
   return (
     <animated.div style={animProps}>
       <GlobalStyle hidden={isModalOpen} />
-      <ModalOverlay onClick={back} className="modal-overlay">
-        <ModalContainer>
-          <a href="#back" onClick={back}>
-            close
-          </a>
-          {component}
-        </ModalContainer>
-      </ModalOverlay>
+      <ModalOverlay
+        onClick={back}
+        className="modal-overlay"
+      />
+      <ModalContainer>
+        <a href="#back" onClick={back}>
+          close
+        </a>
+        {component}
+      </ModalContainer>
     </animated.div>
   );
 }
