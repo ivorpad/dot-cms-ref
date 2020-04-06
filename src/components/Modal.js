@@ -3,7 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import styled, { createGlobalStyle } from 'styled-components'
 import { useSpring, animated } from "react-spring";
 import close from '../close.svg';
-import { media, sizes } from "../utils/media";
+import { media } from "../utils/media";
 
 const ModalOverlay = styled.div`
   background: rgba(0, 0, 0, 0.1);

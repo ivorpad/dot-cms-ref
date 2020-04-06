@@ -6,7 +6,7 @@ import Modal from './Modal'
 import NewProductForm from './NewProductForm'
 import { px2vh as px } from "../utils/typography";
 import styled from "styled-components";
-import { media, sizes } from "../utils/media";
+import { media } from "../utils/media";
 
 const SelectCategoryTitle = styled.div`
   display: flex;
@@ -28,7 +28,6 @@ const SelectCategoryTitle = styled.div`
 function ProductCatalog() {
   const location = useLocation();
   const background = location.state && location.state.background;
-  //const product = location.state  && location.state.product;
 
   return (
     <>

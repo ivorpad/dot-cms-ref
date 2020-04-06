@@ -4,7 +4,6 @@ import loading from '../loading.svg'
 import Img from "react-image";
 import styled, { css } from "styled-components";
 import { price, media } from "../utils/media";
-import { px2vh as px } from "../utils/typography";
 
 const isSingle = css`
   background: white;

@@ -1,11 +1,10 @@
 import React, { useRef } from 'react'
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import styled from 'styled-components'
 import {
   useCategories
 } from "../shared/contexts/categories.context";
 import {PrimaryButton} from '../styles/shared'
-//import PropTypes from "prop-types";
 
 const FormControl = styled.div`
   margin-bottom: 1rem;
